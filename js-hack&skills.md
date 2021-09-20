@@ -1,5 +1,42 @@
 # HTML-CSS-JS
 
+## (21.8.30) 숫자 배열 sort 시 주의사항
+- sort() 를 바로 적용하면 숫자타입이더라도 문자 방식으로 정렬이 된다.
+```
+const array1 = [1, 30, 4, 21, 100000];
+array1.sort();
+console.log(array1);
+// expected output: Array [1, 100000, 21, 30, 4]
+```
+- 의도한대로 오름차순 정렬을 하기 위해서는 comparator를 선언해야함
+```
+let numbers = [4, 2, 5, 1, 3];
+numbers.sort((a, b) => a - b);
+console.log(numbers);
+
+// [1, 2, 3, 4, 5]
+```
+
+## (21.8.16) 콜백 대신 await 사용하기
+- 콜백사용하는 경우
+``` js
+sqs.sendMessage(params, function(err, data) {
+  if (err) console.log(err, err.stack); // an error occurred
+  else     console.log(data);           // successful response
+});
+```
+
+- async await, .promise()로 사용하는 경우
+```js
+try {
+  const data = await sqs.sendMessage(params).promise();
+  console.log(data); 
+}
+catch (err) {
+  console.log(err, err.stack)
+}
+```
+
 ## (20.02.09) Prototype을 활용하여서 숫자에 콤마(,) 넣어주기
 
 ```
